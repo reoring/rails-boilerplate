@@ -1,0 +1,31 @@
+name: myapp
+root: .
+
+# socket_name:
+
+# pre:
+
+pre_window: >
+  eval $(dinghy shellinit)
+  && source secret-variables
+  && alias docker-compose="docker-compose -f docker-compose.development.yml"
+  && docker-compose -f docker-compose.development.yml up -d
+
+# tmux_options:
+
+# tmux_command:
+
+windows:
+  - 🐙 git:
+    - git fetch --prune
+    - git branch -a
+    - git status -s
+
+  - 🚝 rails-console:
+    - docker-compose -f docker-compose.development.yml /app/bin/rails console
+
+  - 🚃 rails-log:
+    - tail -f log/development.log
+
+  - 🐳 docker-log:
+    - docker-compose -f docker-compose.development.yml logs -f --tail=50
