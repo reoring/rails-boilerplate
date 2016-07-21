@@ -3,9 +3,11 @@ CURRENT_DIR := $(shell pwd)
 setup_tmuxinator:
 	ln -fns $(CURRENT_DIR)/tmuxinator.yml $(HOME)/.tmuxinator/myapp.yml
 
-start:
+start: build
 	dinghy start
 	eval $(dinghy shellinit)
+
+build:
 	docker-compose -f docker-compose.development.yml build
 
 up:
