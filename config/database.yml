@@ -7,7 +7,7 @@ default: &default
 
 development:
   <<: *default
-  database: myapp_development
+  database: myapp_dev
   host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
   port: <%= ENV['DATABASE_PORT'] || 5432 %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
